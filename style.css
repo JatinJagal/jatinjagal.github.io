@@ -36,13 +36,18 @@ span{
     color: #f9004d;
 }
 
+nav ul{
+    display: none !important;
+}
+
 nav ul li{
+    display: none !important;
     list-style-type: none;
-    display: inline-block;
     padding: 10px 25px;
 }
 
 nav ul li a{
+    display: none !important;
     color: white;
     text-decoration: none;
     font-weight: bold;
@@ -50,6 +55,7 @@ nav ul li a{
 }
 
 nav ul li a:hover{
+    display: none !important;
     color: #f9004d;
     cursor: pointer;
     transition: .4s;
@@ -582,7 +588,12 @@ footer p:nth-child(2){
         padding-right: 5%;
     }
     
+    nav ul{
+        display: none !important;
+    }
+    
     nav ul li{
+        display: none !important;
         padding: 10px 15px;
     }
     
@@ -644,7 +655,7 @@ footer p:nth-child(2){
     }
     
     .menu-toggle{
-        display: block;
+        display: none !important;
         color: white;
         font-size: 24px;
         cursor: pointer;
@@ -652,7 +663,7 @@ footer p:nth-child(2){
     }
     
     nav ul{
-        display: none;
+        display: none !important;
         width: 100%;
         flex-direction: column;
         position: absolute;
@@ -665,11 +676,11 @@ footer p:nth-child(2){
     }
     
     nav ul.active{
-        display: flex;
+        display: none !important;
     }
     
     nav ul li{
-        display: block;
+        display: none !important;
         padding: 15px 25px;
         text-align: center;
         width: 100%;
@@ -871,6 +882,7 @@ footer p:nth-child(2){
     }
     
     .menu-toggle{
+        display: none !important;
         font-size: 22px;
     }
     

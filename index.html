@@ -24,6 +24,22 @@
             padding-bottom: 20px;
         }
 
+        /* Hide navigation menu items everywhere */
+        nav ul{
+            display: none !important;
+        }
+
+        nav ul li{
+            display: none !important;
+        }
+
+        /* Ensure nav only shows logo and subscribe button */
+        nav{
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+
         .contact-details-wrapper{
             min-height: 100vh;
             background: linear-gradient(135deg, #191919 0%, #101010 100%);
@@ -289,14 +305,6 @@
     <div class="hero" id="home">
         <nav>
             <h2 class="logo">Portfo<span>lio</span></h2>
-            <ul>
-                    <li><a href="#home">Home</a></li>
-                    <li><a href="#about">About Us</a></li>
-                    <li><a href="#services">Services</a></li>
-                    <li><a href="#projects">Projects</a></li>
-                    <li><a href="#skills">Skills</a></li>                    
-                    <li><a href="#contact">Contact Us</a></li> 
-            </ul>
             <a href="#" class="btn" id="subscribeBtn">Subscribe</a>
         </nav>
 
