@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { createPortal } from 'react-dom';
 
 const Services = () => {
   const [selectedService, setSelectedService] = useState(null);
@@ -35,7 +36,8 @@ const Services = () => {
   };
 
   const handleOverlayClick = (e) => {
-    if (e.target.classList.contains('modal-overlay')) {
+    // Check if click is on overlay (not on modal content)
+    if (e.target === e.currentTarget || e.target.classList.contains('modal-overlay')) {
       closeModal();
     }
   };
@@ -69,25 +71,29 @@ const Services = () => {
         ))}
       </div>
 
-      {/* Modal Dialog */}
-      {selectedService && (
+      {/* Modal Dialog - Using Portal for production compatibility */}
+      {selectedService && createPortal(
         <div 
           className="modal-overlay" 
           onClick={handleOverlayClick}
+          role="dialog"
+          aria-modal="true"
+          aria-labelledby="modal-title"
         >
-          <div className="modal-content">
-            <button className="modal-close" onClick={closeModal}>
+          <div className="modal-content" onClick={(e) => e.stopPropagation()}>
+            <button className="modal-close" onClick={closeModal} aria-label="Close modal">
               <i className="fas fa-times"></i>
             </button>
             <div className="modal-header">
               <i className={selectedService.icon}></i>
-              <h3>{selectedService.title}</h3>
+              <h3 id="modal-title">{selectedService.title}</h3>
             </div>
             <div className="modal-body">
               <p>{selectedService.detailedDescription}</p>
             </div>
           </div>
-        </div>
+        </div>,
+        document.body
       )}
     </div>
   );

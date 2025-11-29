@@ -270,8 +270,9 @@ h5{
     display: flex;
     align-items: center;
     justify-content: center;
-    z-index: 2000;
+    z-index: 9999 !important;
     animation: fadeIn 0.3s ease;
+    pointer-events: auto;
 }
 
 @keyframes fadeIn {
@@ -295,6 +296,8 @@ h5{
     box-shadow: 0 10px 40px rgba(0, 0, 0, 0.5);
     animation: slideUp 0.3s ease;
     border: 2px solid #f9004d;
+    z-index: 10000 !important;
+    pointer-events: auto;
 }
 
 /* Custom Scrollbar for Modal */
@@ -343,7 +346,8 @@ h5{
     justify-content: center;
     font-size: 18px;
     transition: all 0.3s ease;
-    z-index: 10;
+    z-index: 10001 !important;
+    pointer-events: auto;
 }
 
 .modal-close:hover{
