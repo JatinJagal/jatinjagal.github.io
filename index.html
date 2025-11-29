@@ -10,21 +10,22 @@
     integrity="sha512-iecdLmaskl7CVkqkXNQ/ZH/XLlvWZOJyj7Yy7tcenmpD1ypASozpmT/E0iPtmFIB46ZmdtAc9eNBvH0H/ZpiBw=="
      crossorigin="anonymous" referrerpolicy="no-referrer" />
 
-    <title>Document</title>
+    <title>Jatin Jagal - Flutter Developer | Portfolio</title>
 </head>
 <body>
 
     <!-- Hero section start-->
 
-    <div class="hero">
+    <div class="hero" id="home">
         <nav>
             <h2 class="logo">Portfo<span>lio</span></h2>
             <ul>
-                    <li><a href="#">Home</a></li>
-                    <li><a href="#">About Us</a></li>
-                    <li><a href="#">Services</a></li>
-                    <li><a href="#">Skills</a></li>                    
-                    <li><a href="#">Contact Us</a></li> 
+                    <li><a href="#home">Home</a></li>
+                    <li><a href="#about">About Us</a></li>
+                    <li><a href="#services">Services</a></li>
+                    <li><a href="#projects">Projects</a></li>
+                    <li><a href="#skills">Skills</a></li>                    
+                    <li><a href="#contact">Contact Us</a></li> 
             </ul>
             <a href="#" class="btn">Subscribe</a>
         </nav>
@@ -34,28 +35,44 @@
             <h1>Jatin <span>Jagal</span></h1>
             <h3>I'am a Flutter Developer.</h3>
             <div class="newslatter">
-                <form>
-                    <input type="email" name="email" id="mail" placeholder="Enter Your Email">
-                    <input type="submit" name="submit" value="Lets Start">
+                <form id="contactForm">
+                    <input type="text" name="message" id="mail" placeholder="Enter Your Message">
+                    <input type="submit" name="submit" value="Let's Talk">
                 </form>
+                <p id="errorMessage" style="color: #f9004d; margin-top: 10px; font-size: 14px; display: none;"></p>
             </div>
+            <script>
+                document.getElementById('contactForm').addEventListener('submit', function(e) {
+                    e.preventDefault();
+                    const message = document.getElementById('mail').value.trim();
+                    const errorMsg = document.getElementById('errorMessage');
+                    
+                    if (!message) {
+                        errorMsg.textContent = 'Please write a message';
+                        errorMsg.style.display = 'block';
+                        return;
+                    }
+                    
+                    errorMsg.style.display = 'none';
+                    const email = 'jatinjagal912@gmail.com';
+                    const subject = encodeURIComponent('Contact from Portfolio');
+                    const body = encodeURIComponent(message);
+                    window.location.href = 'mailto:' + email + '?subject=' + subject + '&body=' + body;
+                    document.getElementById('mail').value = '';
+                });
+            </script>
         </div>
 
     </div>
 
     <!------About Section---------->
 
-    <section class="about">
+    <section class="about" id="about">
         <div class="main">
-            <img src="images/image.png" alt="">
             <div class="about-text">
                 <h2>About Me</h2>
-                <h5>Developer <span>& Designer</span></h5>
-                <p>I am front-end app developer. I can provide clean code and pixel perfect design.
-                    I also make the android application more & more interactive with animations. I can
-                    provide clean code and pixel perfect design. I also make the android application
-                    more & more interactive with animations. A responsive design makes your application
-                    accessible to all users, regardless of their device. 
+                <h5>Flutter <span>Developer</span></h5>
+                <p>I am a Flutter Developer specializing in building cross-platform mobile applications with clean code and pixel-perfect designs. I create interactive and engaging Android applications with smooth animations and excellent user experience. My expertise includes developing dating apps, medical applications, and media sharing platforms. I focus on creating responsive and accessible applications that work seamlessly across all devices, ensuring optimal performance and user satisfaction.
                 </p>
                 <button type="button">Let's Talk</button>
             </div>
@@ -64,7 +81,7 @@
 
     <!----Services Section-------------->
 
-    <div class="service">
+    <div class="service" id="services">
         <div class="title">
             <h2>Our Services</h2>
         </div>
@@ -119,10 +136,142 @@
         </div>
     </div>
 
+    <!----Projects Section-------------->
+
+    <div class="projects" id="projects">
+        <div class="title">
+            <h2>My Projects</h2>
+        </div>
+
+        <div class="projects-container">
+            <div class="project-card">
+                <div class="project-image">
+                    <img src="images/projects/letsmeet.jpg" alt="Let's Meet App" onerror="this.src='images/letsmeet-pro.png'">
+                </div>
+                <div class="project-content">
+                    <h5>Let's Meet</h5>
+                    <p class="project-category">Dating App</p>
+                    <p class="project-description">
+                        A feature-rich dating application that helps users find their perfect match. 
+                        Built with Flutter, featuring real-time chat, image sharing, and date scheduling capabilities. 
+                        Currently has 5K+ downloads on Google Play Store.
+                    </p>
+                    <div class="project-stats">
+                        <span><i class="fas fa-download"></i> 5K+ Downloads</span>
+                        <span><i class="fas fa-star"></i> Mature 17+</span>
+                    </div>
+                    <p style="text-align: center; margin-top: 20px;">
+                        <a class="button" href="https://play.google.com/store/apps/details?id=com.innoventixsolutions.letsmeet" target="_blank">
+                            <i class="fab fa-google-play"></i> View on Play Store
+                        </a>
+                    </p>
+                </div>
+            </div>
+
+            <div class="project-card">
+                <div class="project-image">
+                    <img src="images/projects/imp.jpg" alt="IMP Medical App" onerror="this.src='images/imp-pro.png'">
+                </div>
+                <div class="project-content">
+                    <h5>IMP - Medical Products</h5>
+                    <p class="project-category">Medical App</p>
+                    <p class="project-description">
+                        A healthcare application designed for users to report issues with medical products or devices. 
+                        Features user registration, complaint submission, and direct reporting to hospital administration 
+                        for quick review and action.
+                    </p>
+                    <div class="project-stats">
+                        <span><i class="fas fa-download"></i> 50+ Downloads</span>
+                        <span><i class="fas fa-heart"></i> Healthcare</span>
+                    </div>
+                    <p style="text-align: center; margin-top: 20px;">
+                        <a class="button" href="https://play.google.com/store/apps/details?id=com.app.impmedical" target="_blank">
+                            <i class="fab fa-google-play"></i> View on Play Store
+                        </a>
+                    </p>
+                </div>
+            </div>
+
+            <div class="project-card">
+                <div class="project-image">
+                    <img src="images/projects/weshare.jpg" alt="WeShare App" onerror="this.src='images/weshare-pro.png'">
+                </div>
+                <div class="project-content">
+                    <h5>WeShare</h5>
+                    <p class="project-category">Media Sharing App</p>
+                    <p class="project-description">
+                        A comprehensive photo and video storage solution with cloud backup. Features include 
+                        cross-device access, smart search by tags/objects/places, album sharing, and memory reliving. 
+                        Helps users free up device storage while keeping memories accessible.
+                    </p>
+                    <div class="project-stats">
+                        <span><i class="fas fa-download"></i> 1K+ Downloads</span>
+                        <span><i class="fas fa-cloud"></i> Cloud Storage</span>
+                    </div>
+                    <p style="text-align: center; margin-top: 20px;">
+                        <a class="button" href="https://play.google.com/store/apps/details?id=com.app.weshare" target="_blank">
+                            <i class="fab fa-google-play"></i> View on Play Store
+                        </a>
+                    </p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!----Experience Section-------------->
+
+    <section class="experience" id="skills">
+        <div class="title">
+            <h2>Experience</h2>
+        </div>
+        <div class="experience-content">
+            <div class="experience-item">
+                <div class="experience-icon">
+                    <i class="fas fa-code"></i>
+                </div>
+                <div class="experience-text">
+                    <h3>Flutter Developer</h3>
+                    <h4>Innoventix Solutions</h4>
+                    <p class="experience-date">November 2023 - November 2025</p>
+                    <p>Developing cross-platform mobile applications using Flutter framework. Specialized in creating 
+                    dating apps, social media platforms, and healthcare solutions with focus on user experience, 
+                    performance optimization, and modern UI/UX design patterns. While working in this organization, I created the Let's Meet app, WeShare app, and IMP Medical app. I can deploy apps to both Google Play Store and Apple App Store.</p>
+                    <p class="experience-skills">
+                        <span>Flutter</span>
+                        <span>Dart</span>
+                        <span>Firebase</span>
+                        <span>REST APIs</span>
+                        <span>State Management</span>
+                        <span>Play Store Deployment</span>
+                        <span>App Store Deployment</span>
+                    </p>
+                </div>
+            </div>
+            <div class="experience-item">
+                <div class="experience-icon">
+                    <i class="fas fa-mobile-alt"></i>
+                </div>
+                <div class="experience-text">
+                    <h3>Mobile App Developer</h3>
+                    <h4>Published Apps on Google Play Store</h4>
+                    <p>Successfully developed and published multiple applications on Google Play Store with thousands 
+                    of downloads. Expertise in app architecture, cloud integration, real-time features, and ensuring 
+                    smooth performance across different Android devices.</p>
+                    <p class="experience-skills">
+                        <span>Android Development</span>
+                        <span>Google Play Console</span>
+                        <span>App Deployment</span>
+                        <span>UI/UX Design</span>
+                        <span>API Integration</span>
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
 
     <!--------Contact Me section------------>
 
-    <div class="contact-me">
+    <div class="contact-me" id="contact">
         <p>Let me get you a beautiful application.</p>
         <a class="button-two" href="#">Hire Me</a>
     </div>
@@ -134,12 +283,13 @@
         <p>Jatin Jaga</p>
         <p>For more html, css, and coding tutorial -please click on the link below to subscribe my channel:</p>
         <div class="social">
-            <a href="#"><i class="fab fa-instagram-square"></i></a>
-            <a href="#"><i class="fab fa-linkedin"></i></a>
-            <a href="#"><i class="fab fa-facebook-square"></i></a>
+            <a href="https://www.instagram.com/jatin_jagal/" target="_blank" rel="noopener noreferrer"><i class="fab fa-instagram-square"></i></a>
+            <a href="https://www.linkedin.com/in/jatin-jagal/" target="_blank" rel="noopener noreferrer"><i class="fab fa-linkedin"></i></a>
+            <a href="https://www.facebook.com/profile.php?id=61556752981174" target="_blank" rel="noopener noreferrer"><i class="fab fa-facebook-square"></i></a>
         </div>
-
-        
+        <p class="address">
+            <i class="fas fa-map-marker-alt"></i> 178, New Housing Board, Surendranagar, Gujarat - 363001
+        </p>
         <p class="end">CopyRight &copy By Jagal Jatin</p>
         
     </footer>

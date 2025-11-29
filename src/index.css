@@ -1,4 +1,3 @@
-
 @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap');
 
 *{
@@ -14,7 +13,7 @@ html{
 .hero{
     height: 100vh;
     width: 100%;
-    background-image: url(images/back-ground-project.jpg);
+    background-image: url('/images/back-ground-project.jpg');
     background-size: cover;
     background-position: center;
 }
@@ -260,6 +259,131 @@ h5{
     cursor: pointer;
 }
 
+/* Modal Dialog Styles */
+.modal-overlay{
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.8);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 2000;
+    animation: fadeIn 0.3s ease;
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+    }
+    to {
+        opacity: 1;
+    }
+}
+
+.modal-content{
+    background: #191919;
+    border-radius: 20px;
+    padding: 40px;
+    max-width: 600px;
+    width: 90%;
+    max-height: 80vh;
+    overflow-y: auto;
+    position: relative;
+    box-shadow: 0 10px 40px rgba(0, 0, 0, 0.5);
+    animation: slideUp 0.3s ease;
+    border: 2px solid #f9004d;
+}
+
+/* Custom Scrollbar for Modal */
+.modal-content::-webkit-scrollbar{
+    width: 8px;
+}
+
+.modal-content::-webkit-scrollbar-track{
+    background: #101010;
+    border-radius: 10px;
+}
+
+.modal-content::-webkit-scrollbar-thumb{
+    background: #f9004d;
+    border-radius: 10px;
+}
+
+.modal-content::-webkit-scrollbar-thumb:hover{
+    background: #ff0066;
+}
+
+@keyframes slideUp {
+    from {
+        transform: translateY(50px);
+        opacity: 0;
+    }
+    to {
+        transform: translateY(0);
+        opacity: 1;
+    }
+}
+
+.modal-close{
+    position: absolute;
+    top: 15px;
+    right: 15px;
+    background: #f9004d;
+    color: white;
+    border: none;
+    width: 35px;
+    height: 35px;
+    border-radius: 50%;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 18px;
+    transition: all 0.3s ease;
+    z-index: 10;
+}
+
+.modal-close:hover{
+    background: white;
+    color: #f9004d;
+    transform: rotate(90deg);
+}
+
+.modal-header{
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    margin-bottom: 25px;
+    padding-bottom: 20px;
+    border-bottom: 2px solid #f9004d;
+}
+
+.modal-header i{
+    font-size: 40px;
+    color: #f9004d;
+}
+
+.modal-header h3{
+    color: white;
+    font-size: 28px;
+    margin: 0;
+    font-weight: 600;
+}
+
+.modal-body{
+    color: #f5f5f5;
+    line-height: 1.8;
+    font-size: 16px;
+}
+
+.modal-body p{
+    margin: 0;
+    text-align: left;
+}
+
 /* Projects Section */
 .projects{
     background: #101010;
@@ -502,6 +626,181 @@ h5{
     cursor: pointer;
 }
 
+.contact-me .button-two{
+    background-color: #f9004d;
+    color: white;
+    text-decoration: none;
+    border: 2px solid transparent;
+    font-weight: bold;
+    padding: 9px 22px;
+    border-radius: 30px;
+    transition: .4s;
+    cursor: pointer;
+    font-family: 'Poppins', sans-serif;
+}
+
+/* Contact Details Page Styles */
+.contact-details-wrapper{
+    min-height: 100vh;
+    background: linear-gradient(135deg, #191919 0%, #101010 100%);
+}
+
+.contact-details-page{
+    min-height: calc(100vh - 100px);
+    background: transparent;
+    padding: 40px 20px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding-top: 100px;
+}
+
+.contact-details-container{
+    max-width: 900px;
+    width: 100%;
+    margin: 0 auto;
+}
+
+.back-button{
+    background: transparent;
+    border: 2px solid #f9004d;
+    color: #f9004d;
+    padding: 10px 20px;
+    border-radius: 30px;
+    font-size: 16px;
+    font-weight: 500;
+    cursor: pointer;
+    transition: all 0.4s;
+    margin-bottom: 30px;
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    font-family: 'Poppins', sans-serif;
+}
+
+.back-button:hover{
+    background: #f9004d;
+    color: white;
+    transform: translateX(-5px);
+}
+
+.back-button i{
+    font-size: 18px;
+}
+
+.contact-details-header{
+    text-align: center;
+    margin-bottom: 50px;
+}
+
+.contact-details-header h1{
+    color: white;
+    font-size: 50px;
+    margin-bottom: 15px;
+    font-weight: 700;
+}
+
+.contact-details-header h1 span{
+    color: #f9004d;
+}
+
+.contact-details-header p{
+    color: #f5f5f5;
+    font-size: 18px;
+}
+
+.contact-details-content{
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 30px;
+    margin-bottom: 50px;
+}
+
+.contact-card{
+    background: #191919;
+    border-radius: 20px;
+    padding: 30px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    transition: transform 0.4s, box-shadow 0.4s;
+    border: 2px solid transparent;
+}
+
+.contact-card:hover{
+    transform: translateY(-10px);
+    box-shadow: 0 10px 30px rgba(249, 0, 77, 0.3);
+    border-color: #f9004d;
+}
+
+.contact-icon{
+    width: 70px;
+    height: 70px;
+    background: #f9004d;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 20px;
+    font-size: 30px;
+    color: white;
+}
+
+.contact-info h3{
+    color: white;
+    font-size: 20px;
+    margin-bottom: 15px;
+    font-weight: 600;
+}
+
+.contact-info a{
+    color: #f5f5f5;
+    text-decoration: none;
+    font-size: 16px;
+    transition: color 0.3s;
+    word-break: break-word;
+}
+
+.contact-info a:hover{
+    color: #f9004d;
+}
+
+.contact-info p{
+    color: #f5f5f5;
+    font-size: 16px;
+    line-height: 1.6;
+    margin: 0;
+}
+
+.contact-social-links{
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+    margin-top: 40px;
+}
+
+.contact-social-links .social-link{
+    width: 50px;
+    height: 50px;
+    background: #191919;
+    border: 2px solid #f9004d;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #f9004d;
+    font-size: 22px;
+    transition: all 0.3s;
+    text-decoration: none;
+}
+
+.contact-social-links .social-link:hover{
+    background: #f9004d;
+    color: white;
+    transform: scale(1.1);
+}
+
 footer{
     position: relative;
     width: 100%;
@@ -636,37 +935,36 @@ footer p:nth-child(2){
         padding-left: 5%;
         padding-right: 5%;
         flex-wrap: wrap;
-        position: relative;
     }
     
     .logo{
         font-size: 28px;
     }
     
-    .menu-toggle{
-        display: block;
-        color: white;
-        font-size: 24px;
-        cursor: pointer;
-        z-index: 1001;
-    }
+.menu-toggle{
+    display: none;
+    color: white;
+    font-size: 24px;
+    cursor: pointer;
+    z-index: 1001;
+}
+
+nav ul{
+    display: none;
+    width: 100%;
+    flex-direction: column;
+    position: absolute;
+    top: 80px;
+    left: 0;
+    background: rgba(0, 0, 0, 0.95);
+    padding: 20px 0;
+    z-index: 1000;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.3);
+}
     
-    nav ul{
-        display: none;
-        width: 100%;
-        flex-direction: column;
-        position: absolute;
-        top: 80px;
-        left: 0;
-        background: rgba(0, 0, 0, 0.95);
-        padding: 20px 0;
-        z-index: 1000;
-        box-shadow: 0 4px 6px rgba(0, 0, 0, 0.3);
-    }
-    
-    nav ul.active{
-        display: flex;
-    }
+nav ul.active{
+    display: flex;
+}
     
     nav ul li{
         display: block;
@@ -681,10 +979,24 @@ footer p:nth-child(2){
     }
     
     /* Hero Section */
+    .hero{
+        background-size: cover;
+        background-position: center center;
+        background-repeat: no-repeat;
+        height: 100vh;
+        min-height: 100vh;
+        width: 100%;
+        max-width: 100%;
+        position: relative;
+        background-attachment: scroll;
+        overflow: hidden;
+    }
+    
     .content{
         left: 5%;
         top: 45%;
         transform: translateY(-50%);
+        width: 90%;
     }
     
     h1{
@@ -761,6 +1073,28 @@ footer p:nth-child(2){
         height: auto;
         min-height: 380px;
         margin: 20px 15px;
+    }
+    
+    /* Modal Responsive */
+    .modal-content{
+        padding: 30px 25px;
+        max-width: 90%;
+        width: 95%;
+    }
+    
+    .modal-header{
+        flex-direction: column;
+        text-align: center;
+        gap: 10px;
+        margin-bottom: 20px;
+    }
+    
+    .modal-header h3{
+        font-size: 24px;
+    }
+    
+    .modal-body{
+        font-size: 15px;
     }
     
     /* Projects Section */
@@ -870,19 +1204,30 @@ footer p:nth-child(2){
         font-size: 24px;
     }
     
-    .menu-toggle{
-        font-size: 22px;
-    }
-    
     .btn{
         padding: 6px 15px;
         font-size: 12px;
     }
     
     /* Hero Section */
+    .hero{
+        background-image: url('/images/back-ground-project.jpg');
+        background-size: cover;
+        background-position: center center;
+        background-repeat: no-repeat;
+        height: 100vh;
+        min-height: 100vh;
+        width: 100%;
+        max-width: 100vw;
+        position: relative;
+        background-attachment: scroll;
+        overflow: hidden;
+    }
+    
     .content{
         left: 4%;
         top: 40%;
+        width: 92%;
     }
     
     h1{
@@ -982,6 +1327,43 @@ footer p:nth-child(2){
     .pra p{
         font-size: 14px;
         line-height: 24px;
+    }
+    
+    /* Modal Responsive */
+    .modal-content{
+        padding: 25px 20px;
+        max-width: 95%;
+        width: 95%;
+        border-radius: 15px;
+    }
+    
+    .modal-close{
+        width: 30px;
+        height: 30px;
+        font-size: 16px;
+        top: 10px;
+        right: 10px;
+    }
+    
+    .modal-header{
+        flex-direction: column;
+        text-align: center;
+        gap: 8px;
+        margin-bottom: 15px;
+        padding-bottom: 15px;
+    }
+    
+    .modal-header i{
+        font-size: 35px;
+    }
+    
+    .modal-header h3{
+        font-size: 20px;
+    }
+    
+    .modal-body{
+        font-size: 14px;
+        line-height: 1.6;
     }
     
     /* Projects Section */
@@ -1092,6 +1474,43 @@ footer p:nth-child(2){
         font-size: 14px;
     }
     
+    /* Contact Details Page Responsive */
+    .contact-details-page{
+        padding: 30px 15px;
+    }
+    
+    .contact-details-header h1{
+        font-size: 40px;
+    }
+    
+    .contact-details-header p{
+        font-size: 16px;
+    }
+    
+    .contact-details-content{
+        grid-template-columns: 1fr;
+        gap: 20px;
+    }
+    
+    .contact-card{
+        padding: 25px;
+    }
+    
+    .contact-icon{
+        width: 60px;
+        height: 60px;
+        font-size: 25px;
+    }
+    
+    .contact-info h3{
+        font-size: 18px;
+    }
+    
+    .contact-info a,
+    .contact-info p{
+        font-size: 15px;
+    }
+    
     /* Footer */
     footer{
         padding: 35px 15px 70px;
@@ -1119,11 +1538,6 @@ footer p:nth-child(2){
         font-size: 16px;
     }
     
-    .social{
-        flex-wrap: wrap;
-        justify-content: center;
-    }
-    
     .social a{
         width: 40px;
         height: 40px;
@@ -1135,6 +1549,170 @@ footer p:nth-child(2){
         bottom: 25px;
         font-size: 12px;
     }
+    
+    /* Contact Details Page Responsive Mobile */
+    .contact-details-page{
+        padding: 20px 10px;
+    }
+    
+    .back-button{
+        padding: 8px 15px;
+        font-size: 14px;
+        margin-bottom: 25px;
+    }
+    
+    .contact-details-header h1{
+        font-size: 32px;
+        margin-bottom: 10px;
+    }
+    
+    .contact-details-header p{
+        font-size: 14px;
+    }
+    
+    .contact-details-content{
+        gap: 15px;
+        margin-bottom: 30px;
+    }
+    
+    .contact-card{
+        padding: 20px;
+    }
+    
+    .contact-icon{
+        width: 55px;
+        height: 55px;
+        font-size: 22px;
+        margin-bottom: 15px;
+    }
+    
+    .contact-info h3{
+        font-size: 16px;
+        margin-bottom: 12px;
+    }
+    
+    .contact-info a,
+    .contact-info p{
+        font-size: 14px;
+    }
+    
+    .contact-social-links{
+        gap: 15px;
+        margin-top: 30px;
+    }
+    
+    .contact-social-links .social-link{
+        width: 45px;
+        height: 45px;
+        font-size: 20px;
+    }
+}
+
+/* Toast Notification Styles */
+.toast-container{
+    position: fixed;
+    top: 20px;
+    right: 20px;
+    z-index: 3000;
+    animation: slideInRight 0.3s ease;
+}
+
+@keyframes slideInRight {
+    from {
+        transform: translateX(400px);
+        opacity: 0;
+    }
+    to {
+        transform: translateX(0);
+        opacity: 1;
+    }
+}
+
+.toast{
+    background: #191919;
+    border: 2px solid #f9004d;
+    border-radius: 10px;
+    padding: 15px 20px;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.5);
+    min-width: 300px;
+    animation: fadeIn 0.3s ease;
+}
+
+.toast i.fa-check-circle{
+    color: #4ade80;
+    font-size: 22px;
+}
+
+.toast span{
+    color: white;
+    font-size: 16px;
+    font-weight: 500;
+    flex: 1;
+}
+
+.toast-close{
+    background: transparent;
+    border: none;
+    color: #f5f5f5;
+    cursor: pointer;
+    font-size: 16px;
+    padding: 5px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: color 0.3s;
+}
+
+.toast-close:hover{
+    color: #f9004d;
+}
+
+/* Toast Responsive */
+@media (max-width: 768px) {
+    .toast-container{
+        top: 15px;
+        right: 15px;
+        left: 15px;
+    }
+    
+    .toast{
+        min-width: auto;
+        width: 100%;
+        padding: 12px 15px;
+    }
+    
+    .toast span{
+        font-size: 14px;
+    }
+}
+
+@media (max-width: 480px) {
+    .toast-container{
+        top: 10px;
+        right: 10px;
+        left: 10px;
+    }
+    
+    .toast{
+        padding: 10px 12px;
+        gap: 10px;
+    }
+    
+    .toast i.fa-check-circle{
+        font-size: 18px;
+    }
+    
+    .toast span{
+        font-size: 13px;
+    }
+    
+    .toast-close{
+        font-size: 14px;
+    }
 }
 
 /* 'Poppins', sans-serif */
+
