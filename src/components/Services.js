@@ -25,20 +25,32 @@ const Services = () => {
     }
   ];
 
-  const openModal = (service) => {
+  const openModal = (service, e) => {
+    if (e) {
+      e.preventDefault();
+      e.stopPropagation();
+    }
     setSelectedService(service);
-    document.body.style.overflow = 'hidden'; // Prevent background scrolling
+    if (document.body) {
+      document.body.style.overflow = 'hidden'; // Prevent background scrolling
+    }
   };
 
-  const closeModal = () => {
+  const closeModal = (e) => {
+    if (e) {
+      e.preventDefault();
+      e.stopPropagation();
+    }
     setSelectedService(null);
-    document.body.style.overflow = 'auto'; // Restore scrolling
+    if (document.body) {
+      document.body.style.overflow = 'auto'; // Restore scrolling
+    }
   };
 
   const handleOverlayClick = (e) => {
     // Check if click is on overlay (not on modal content)
     if (e.target === e.currentTarget || e.target.classList.contains('modal-overlay')) {
-      closeModal();
+      closeModal(e);
     }
   };
 
@@ -55,16 +67,13 @@ const Services = () => {
             <div className="pra">
               <p>{service.description}</p>
               <p style={{ textAlign: 'center' }}>
-                <a 
+                <button
+                  type="button"
                   className="button" 
-                  href="#" 
-                  onClick={(e) => {
-                    e.preventDefault();
-                    openModal(service);
-                  }}
+                  onClick={(e) => openModal(service, e)}
                 >
                   Read More
-                </a>
+                </button>
               </p>
             </div>
           </div>
@@ -72,7 +81,7 @@ const Services = () => {
       </div>
 
       {/* Modal Dialog - Using Portal for production compatibility */}
-      {selectedService && createPortal(
+      {selectedService && typeof document !== 'undefined' && createPortal(
         <div 
           className="modal-overlay" 
           onClick={handleOverlayClick}
@@ -81,7 +90,12 @@ const Services = () => {
           aria-labelledby="modal-title"
         >
           <div className="modal-content" onClick={(e) => e.stopPropagation()}>
-            <button className="modal-close" onClick={closeModal} aria-label="Close modal">
+            <button 
+              type="button"
+              className="modal-close" 
+              onClick={(e) => closeModal(e)} 
+              aria-label="Close modal"
+            >
               <i className="fas fa-times"></i>
             </button>
             <div className="modal-header">

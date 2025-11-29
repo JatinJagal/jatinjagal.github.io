@@ -12,7 +12,7 @@ const Navbar = () => {
     e.preventDefault();
     
     // If not on home page, navigate to home first
-    if (location.pathname !== '/') {
+    if (location.pathname !== '/' && location.pathname !== '') {
       navigate('/');
       setTimeout(() => {
         const element = document.getElementById(targetId);
