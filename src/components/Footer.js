@@ -17,7 +17,7 @@ const Footer = () => {
         </a>
       </div>
       <p className="address">
-        <i className="fas fa-map-marker-alt"></i> 178, New Housing Board, Surendranagar, Gujarat - 363001
+        <i className="fas fa-map-marker-alt"></i> Ahmedabad, Gujarat, India
       </p>
       <p className="end">CopyRight &copy; By Jagal Jatin</p>
     </footer>

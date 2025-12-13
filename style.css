@@ -17,6 +17,29 @@ html{
     background-image: url(images/back-ground-project.jpg);
     background-size: cover;
     background-position: center;
+    position: relative;
+    overflow: hidden;
+}
+
+#threejs-canvas{
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 1;
+    opacity: 0.5;
+    pointer-events: none;
+}
+
+.hero nav{
+    position: relative;
+    z-index: 100;
+}
+
+.hero .content{
+    position: relative;
+    z-index: 100;
 }
 nav{
     display: flex;
@@ -25,6 +48,13 @@ nav{
     padding-top: 45px;
     padding-left: 8%;
     padding-right: 8%;
+    position: fixed;
+    top: 0;
+    width: 100%;
+    z-index: 1000;
+    background: transparent;
+    transition: all 0.3s ease;
+    padding-bottom: 15px;
 }
 .logo{
     color: white;
@@ -78,6 +108,7 @@ nav ul li a:hover{
     top: 50%;
     left: 8%;
     transform: translateY(-50%);
+    z-index: 10;
 }
 h1{
     color: white;
@@ -135,6 +166,8 @@ h4{
     width: 100%;
     padding: 100px 0px;
     background-color: #191919;
+    position: relative;
+    z-index: 1;
 }
 
 .about-text{
@@ -199,6 +232,8 @@ button:hover{
     background: #101010;
     width: 100%;
     padding: 100px 0px;
+    position: relative;
+    z-index: 1;
 }
 
 .title h2{
@@ -271,6 +306,8 @@ h5{
     background: #101010;
     width: 100%;
     padding: 100px 0px;
+    position: relative;
+    z-index: 1;
 }
 
 .projects-container{
@@ -384,6 +421,8 @@ h5{
     background: #191919;
     width: 100%;
     padding: 100px 0px;
+    position: relative;
+    z-index: 1;
 }
 
 .experience-content{
@@ -1341,3 +1380,693 @@ footer p:nth-child(2){
 }
 
 /* 'Poppins', sans-serif */
+
+/* ==================== MODERN ANIMATIONS ==================== */
+
+/* Smooth Fade In Animation */
+@keyframes fadeInUp {
+    from {
+        opacity: 0;
+        transform: translateY(30px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@keyframes fadeInDown {
+    from {
+        opacity: 0;
+        transform: translateY(-30px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@keyframes fadeInLeft {
+    from {
+        opacity: 0;
+        transform: translateX(-50px);
+    }
+    to {
+        opacity: 1;
+        transform: translateX(0);
+    }
+}
+
+@keyframes fadeInRight {
+    from {
+        opacity: 0;
+        transform: translateX(50px);
+    }
+    to {
+        opacity: 1;
+        transform: translateX(0);
+    }
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+    }
+    to {
+        opacity: 1;
+    }
+}
+
+/* Floating Animation */
+@keyframes float {
+    0%, 100% {
+        transform: translateY(0px);
+    }
+    50% {
+        transform: translateY(-20px);
+    }
+}
+
+/* Pulse Animation */
+@keyframes pulse {
+    0%, 100% {
+        transform: scale(1);
+    }
+    50% {
+        transform: scale(1.05);
+    }
+}
+
+/* Shake Animation */
+@keyframes shake {
+    0%, 100% {
+        transform: translateX(0);
+    }
+    25% {
+        transform: translateX(-5px);
+    }
+    75% {
+        transform: translateX(5px);
+    }
+}
+
+/* Gradient Animation */
+@keyframes gradientShift {
+    0% {
+        background-position: 0% 50%;
+    }
+    50% {
+        background-position: 100% 50%;
+    }
+    100% {
+        background-position: 0% 50%;
+    }
+}
+
+/* Rotate Animation */
+@keyframes rotate {
+    from {
+        transform: rotate(0deg);
+    }
+    to {
+        transform: rotate(360deg);
+    }
+}
+
+/* Typing Animation */
+@keyframes typing {
+    from {
+        width: 0;
+    }
+    to {
+        width: 100%;
+    }
+}
+
+@keyframes blink {
+    from, to {
+        border-color: transparent;
+    }
+    50% {
+        border-color: #f9004d;
+    }
+}
+
+/* Scale In Animation */
+@keyframes scaleIn {
+    from {
+        opacity: 0;
+        transform: scale(0.8);
+    }
+    to {
+        opacity: 1;
+        transform: scale(1);
+    }
+}
+
+/* Slide In Animation */
+@keyframes slideInRight {
+    from {
+        opacity: 0;
+        transform: translateX(100px);
+    }
+    to {
+        opacity: 1;
+        transform: translateX(0);
+    }
+}
+
+/* Bounce Animation */
+@keyframes bounce {
+    0%, 20%, 50%, 80%, 100% {
+        transform: translateY(0);
+    }
+    40% {
+        transform: translateY(-10px);
+    }
+    60% {
+        transform: translateY(-5px);
+    }
+}
+
+/* ==================== ANIMATION CLASSES ==================== */
+
+/* Scroll-triggered animations (will be added via JavaScript) */
+.animate-on-scroll {
+    opacity: 0;
+    transition: all 0.6s ease-out;
+}
+
+.animate-on-scroll.animated {
+    opacity: 1;
+}
+
+.fade-in-up {
+    animation: fadeInUp 0.8s ease-out forwards;
+}
+
+.fade-in-down {
+    animation: fadeInDown 0.8s ease-out forwards;
+}
+
+.fade-in-left {
+    animation: fadeInLeft 0.8s ease-out forwards;
+}
+
+.fade-in-right {
+    animation: fadeInRight 0.8s ease-out forwards;
+}
+
+.fade-in {
+    animation: fadeIn 0.8s ease-out forwards;
+}
+
+.scale-in {
+    animation: scaleIn 0.6s ease-out forwards;
+}
+
+.slide-in-right {
+    animation: slideInRight 0.8s ease-out forwards;
+}
+
+/* ==================== ENHANCED ELEMENT ANIMATIONS ==================== */
+
+/* Hero Section Animations */
+.hero {
+    position: relative;
+    animation: fadeIn 1s ease-in;
+}
+
+.hero::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(135deg, rgba(249, 0, 77, 0.1) 0%, rgba(0, 0, 0, 0.5) 100%);
+    animation: fadeIn 1.5s ease-in;
+}
+
+.content h1 {
+    animation: fadeInDown 1s ease-out 0.3s backwards;
+}
+
+.content h3 {
+    animation: fadeInLeft 1s ease-out 0.5s backwards;
+}
+
+.content h4 {
+    animation: fadeInRight 1s ease-out 0.7s backwards;
+}
+
+.newslatter {
+    animation: fadeInUp 1s ease-out 0.9s backwards;
+}
+
+/* Logo Animation */
+.logo {
+    position: relative;
+    transition: all 0.3s ease;
+}
+
+.logo:hover {
+    transform: scale(1.1);
+    text-shadow: 0 0 20px rgba(249, 0, 77, 0.5);
+}
+
+.logo span {
+    display: inline-block;
+    transition: all 0.3s ease;
+}
+
+.logo:hover span {
+    animation: pulse 1s infinite;
+}
+
+/* Button Enhancements */
+.btn {
+    position: relative;
+    overflow: hidden;
+    transition: all 0.3s ease;
+}
+
+.btn::before {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 0;
+    height: 0;
+    border-radius: 50%;
+    background: rgba(255, 255, 255, 0.3);
+    transform: translate(-50%, -50%);
+    transition: width 0.6s, height 0.6s;
+}
+
+.btn:hover::before {
+    width: 300px;
+    height: 300px;
+}
+
+.btn:hover {
+    transform: scale(1.1);
+    box-shadow: 0 5px 20px rgba(249, 0, 77, 0.4);
+}
+
+/* Card Animations */
+.card {
+    transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    position: relative;
+    overflow: hidden;
+}
+
+.card::before {
+    content: '';
+    position: absolute;
+    top: -50%;
+    left: -50%;
+    width: 200%;
+    height: 200%;
+    background: radial-gradient(circle, rgba(249, 0, 77, 0.1) 0%, transparent 70%);
+    opacity: 0;
+    transition: opacity 0.4s ease;
+}
+
+.card:hover::before {
+    opacity: 1;
+}
+
+.card:hover {
+    transform: translateY(-15px) scale(1.02);
+    box-shadow: 0 15px 30px rgba(249, 0, 77, 0.3);
+}
+
+.card i {
+    transition: all 0.4s ease;
+}
+
+.card:hover i {
+    transform: scale(1.2) rotate(5deg);
+    color: #ff0066;
+    animation: pulse 1s infinite;
+}
+
+.card .button {
+    position: relative;
+    overflow: hidden;
+    transition: all 0.3s ease;
+}
+
+.card .button::after {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 0;
+    height: 0;
+    border-radius: 50%;
+    background: rgba(255, 255, 255, 0.2);
+    transform: translate(-50%, -50%);
+    transition: width 0.6s, height 0.6s;
+}
+
+.card .button:hover::after {
+    width: 300px;
+    height: 300px;
+}
+
+/* Project Card Animations */
+.project-card {
+    position: relative;
+    overflow: hidden;
+}
+
+.project-card::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(249, 0, 77, 0.1), transparent);
+    transition: left 0.5s ease;
+}
+
+.project-card:hover::after {
+    left: 100%;
+}
+
+.project-card:hover {
+    transform: translateY(-15px);
+    box-shadow: 0 20px 40px rgba(249, 0, 77, 0.4);
+}
+
+.project-image img {
+    transition: transform 0.6s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+}
+
+.project-card:hover .project-image img {
+    transform: scale(1.15) rotate(2deg);
+}
+
+/* Experience Item Animations */
+.experience-item {
+    position: relative;
+    transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+}
+
+.experience-item::before {
+    content: '';
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 4px;
+    height: 0;
+    background: #f9004d;
+    transition: height 0.4s ease;
+    border-radius: 0 0 4px 4px;
+}
+
+.experience-item:hover::before {
+    height: 100%;
+}
+
+.experience-item:hover {
+    transform: translateX(15px);
+    box-shadow: 0 10px 30px rgba(249, 0, 77, 0.3);
+}
+
+.experience-icon {
+    transition: all 0.4s ease;
+}
+
+.experience-item:hover .experience-icon {
+    transform: rotate(360deg) scale(1.1);
+    box-shadow: 0 5px 20px rgba(249, 0, 77, 0.5);
+}
+
+.experience-skills span {
+    transition: all 0.3s ease;
+    position: relative;
+    overflow: hidden;
+}
+
+.experience-skills span::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+    transition: left 0.5s ease;
+}
+
+.experience-skills span:hover::before {
+    left: 100%;
+}
+
+.experience-skills span:hover {
+    transform: translateY(-3px) scale(1.05);
+    box-shadow: 0 5px 15px rgba(249, 0, 77, 0.4);
+}
+
+/* Social Icons Animation */
+.social a {
+    position: relative;
+    transition: all 0.3s ease;
+    overflow: hidden;
+}
+
+.social a::before {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 0;
+    height: 0;
+    border-radius: 50%;
+    background: rgba(255, 255, 255, 0.3);
+    transform: translate(-50%, -50%);
+    transition: width 0.4s, height 0.4s;
+}
+
+.social a:hover::before {
+    width: 100px;
+    height: 100px;
+}
+
+.social a:hover {
+    transform: scale(1.2) rotate(5deg);
+    box-shadow: 0 5px 20px rgba(249, 0, 77, 0.6);
+}
+
+.social a i {
+    position: relative;
+    z-index: 1;
+    transition: transform 0.3s ease;
+}
+
+.social a:hover i {
+    transform: rotate(360deg);
+}
+
+/* Contact Button Animation */
+.contact-me .button-two {
+    position: relative;
+    overflow: hidden;
+    transition: all 0.3s ease;
+}
+
+.contact-me .button-two::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+    transition: left 0.5s ease;
+}
+
+.contact-me .button-two:hover::after {
+    left: 100%;
+}
+
+.contact-me .button-two:hover {
+    transform: scale(1.1);
+    box-shadow: 0 5px 25px rgba(249, 0, 77, 0.5);
+}
+
+/* Form Input Animations */
+.newslatter form input:first-child {
+    transition: all 0.3s ease;
+}
+
+.newslatter form input:first-child:focus {
+    transform: scale(1.02);
+    box-shadow: 0 0 20px rgba(249, 0, 77, 0.3);
+    border-color: #ff0066;
+}
+
+/* About Section Animation */
+.about {
+    position: relative;
+}
+
+.about-text {
+    animation: fadeInUp 1s ease-out;
+}
+
+.about-text h2 {
+    position: relative;
+    display: inline-block;
+}
+
+.about-text h2::after {
+    content: '';
+    position: absolute;
+    bottom: -10px;
+    left: 0;
+    width: 0;
+    height: 3px;
+    background: #f9004d;
+    animation: slideInRight 1s ease-out 0.5s forwards;
+}
+
+/* Title Animations */
+.title h2 {
+    position: relative;
+    display: inline-block;
+    padding-bottom: 20px;
+}
+
+.title h2::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 0;
+    height: 3px;
+    background: linear-gradient(90deg, transparent, #f9004d, transparent);
+    animation: slideInRight 1s ease-out forwards;
+}
+
+/* Navbar Animation */
+nav {
+    animation: fadeInDown 0.8s ease-out;
+    transition: all 0.3s ease;
+}
+
+/* Footer Animation */
+footer {
+    position: relative;
+}
+
+footer::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 2px;
+    background: linear-gradient(90deg, transparent, #f9004d, transparent);
+    animation: fadeIn 1s ease-out;
+}
+
+/* Loading Animation for Images */
+.project-image img,
+.card img {
+    animation: fadeIn 0.5s ease-in;
+}
+
+/* Smooth Scroll Enhancement */
+html {
+    scroll-behavior: smooth;
+}
+
+/* Back Button Animation */
+.back-button {
+    position: relative;
+    overflow: hidden;
+}
+
+.back-button::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: rgba(249, 0, 77, 0.1);
+    transition: left 0.3s ease;
+}
+
+.back-button:hover::before {
+    left: 0;
+}
+
+/* Contact Card Animations */
+.contact-card {
+    transition: all 0.4s ease;
+    position: relative;
+    overflow: hidden;
+}
+
+.contact-card::before {
+    content: '';
+    position: absolute;
+    top: -50%;
+    right: -50%;
+    width: 200%;
+    height: 200%;
+    background: radial-gradient(circle, rgba(249, 0, 77, 0.1) 0%, transparent 70%);
+    opacity: 0;
+    transition: opacity 0.4s ease;
+}
+
+.contact-card:hover::before {
+    opacity: 1;
+}
+
+.contact-card:hover {
+    transform: translateY(-10px) scale(1.02);
+    box-shadow: 0 15px 30px rgba(249, 0, 77, 0.3);
+}
+
+.contact-icon {
+    transition: all 0.4s ease;
+}
+
+.contact-card:hover .contact-icon {
+    transform: rotate(360deg) scale(1.1);
+    background: linear-gradient(135deg, #f9004d, #ff0066);
+    box-shadow: 0 5px 20px rgba(249, 0, 77, 0.5);
+}
+
+/* Responsive Animation Adjustments */
+@media (max-width: 768px) {
+    .card:hover {
+        transform: translateY(-5px);
+    }
+    
+    .project-card:hover {
+        transform: translateY(-5px);
+    }
+    
+    .experience-item:hover {
+        transform: translateX(5px);
+    }
+}
+
+@media (prefers-reduced-motion: reduce) {
+    *,
+    *::before,
+    *::after {
+        animation-duration: 0.01ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: 0.01ms !important;
+    }
+}

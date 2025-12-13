@@ -50,7 +50,7 @@ const ContactDetails = () => {
             </div>
             <div className="contact-info">
               <h3>Home Address</h3>
-              <p>178, New Housing Board, Surendranagar, Gujarat - 363001</p>
+              <p> Ahmedabad, Gujarat, India</p>
             </div>
           </div>
 

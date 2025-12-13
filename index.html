@@ -10,6 +10,9 @@
     integrity="sha512-iecdLmaskl7CVkqkXNQ/ZH/XLlvWZOJyj7Yy7tcenmpD1ypASozpmT/E0iPtmFIB46ZmdtAc9eNBvH0H/ZpiBw=="
      crossorigin="anonymous" referrerpolicy="no-referrer" />
 
+    <!-- Three.js Library -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+
     <title>Jatin Jagal - Flutter Developer | Portfolio</title>
     <style>
         /* Contact Details Page Styles */
@@ -303,6 +306,9 @@
     <!-- Hero section start-->
 
     <div class="hero" id="home">
+        <!-- Three.js Canvas for 3D Animation -->
+        <canvas id="threejs-canvas"></canvas>
+        
         <nav>
             <h2 class="logo">Portfo<span>lio</span></h2>
             <a href="#" class="btn" id="subscribeBtn">Subscribe</a>
@@ -566,7 +572,7 @@
             <a href="https://www.facebook.com/profile.php?id=61556752981174" target="_blank" rel="noopener noreferrer"><i class="fab fa-facebook-square"></i></a>
         </div>
         <p class="address">
-            <i class="fas fa-map-marker-alt"></i> 178, New Housing Board, Surendranagar, Gujarat - 363001
+            <i class="fas fa-map-marker-alt"></i>  Ahmedabad, Gujarat, India
         </p>
         <p class="end">CopyRight &copy By Jagal Jatin</p>
         
@@ -824,6 +830,358 @@
                 navigateToHome();
             }
         });
+
+        // ==================== SCROLL-TRIGGERED ANIMATIONS ====================
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -50px 0px'
+        };
+
+        const observer = new IntersectionObserver(function(entries) {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('animated');
+                    // Add specific animation classes based on data attribute
+                    const animationType = entry.target.getAttribute('data-animation') || 'fade-in-up';
+                    entry.target.classList.add(animationType);
+                    observer.unobserve(entry.target);
+                }
+            });
+        }, observerOptions);
+
+        // Observe all sections for scroll animations
+        document.addEventListener('DOMContentLoaded', function() {
+            // Add animate-on-scroll class to elements
+            const animateElements = document.querySelectorAll('.about, .service, .projects, .experience, .contact-me, .card, .project-card, .experience-item, .title, .about-text, .contact-card');
+            
+            animateElements.forEach((el, index) => {
+                el.classList.add('animate-on-scroll');
+                el.setAttribute('data-animation', 'fade-in-up');
+                observer.observe(el);
+            });
+
+            // Stagger animation for cards
+            const cards = document.querySelectorAll('.card');
+            cards.forEach((card, index) => {
+                card.style.animationDelay = `${index * 0.1}s`;
+                card.setAttribute('data-animation', 'scale-in');
+            });
+
+            // Stagger animation for project cards
+            const projectCards = document.querySelectorAll('.project-card');
+            projectCards.forEach((card, index) => {
+                card.style.animationDelay = `${index * 0.15}s`;
+            });
+
+            // Stagger animation for experience items
+            const experienceItems = document.querySelectorAll('.experience-item');
+            experienceItems.forEach((item, index) => {
+                item.style.animationDelay = `${index * 0.2}s`;
+            });
+        });
+
+        // ==================== TYPING ANIMATION FOR HERO TEXT ====================
+        function typeWriter(element, text, speed = 100) {
+            let i = 0;
+            element.textContent = '';
+            element.style.borderRight = '2px solid #f9004d';
+            
+            function type() {
+                if (i < text.length) {
+                    element.textContent += text.charAt(i);
+                    i++;
+                    setTimeout(type, speed);
+                } else {
+                    // Blinking cursor effect
+                    setInterval(() => {
+                        element.style.borderRight = element.style.borderRight === '2px solid transparent' ? '2px solid #f9004d' : '2px solid transparent';
+                    }, 500);
+                }
+            }
+            
+            type();
+        }
+
+        // Apply typing animation to hero h3 text
+        document.addEventListener('DOMContentLoaded', function() {
+            const heroText = document.querySelector('.content h3');
+            if (heroText && !sessionStorage.getItem('typingAnimationPlayed')) {
+                const originalText = heroText.textContent;
+                typeWriter(heroText, originalText, 80);
+                sessionStorage.setItem('typingAnimationPlayed', 'true');
+            }
+        });
+
+        // ==================== PARALLAX EFFECT FOR HERO ====================
+        window.addEventListener('scroll', function() {
+            const scrolled = window.pageYOffset;
+            const hero = document.querySelector('.hero');
+            if (hero) {
+                hero.style.transform = `translateY(${scrolled * 0.5}px)`;
+            }
+        });
+
+        // ==================== NAVBAR SCROLL EFFECT ====================
+        let lastScroll = 0;
+        const navbar = document.querySelector('nav');
+        
+        window.addEventListener('scroll', function() {
+            const currentScroll = window.pageYOffset;
+            
+            if (currentScroll > 100) {
+                navbar.style.background = 'rgba(0, 0, 0, 0.95)';
+                navbar.style.backdropFilter = 'blur(10px)';
+                navbar.style.boxShadow = '0 2px 20px rgba(0, 0, 0, 0.3)';
+            } else {
+                navbar.style.background = 'transparent';
+                navbar.style.backdropFilter = 'none';
+                navbar.style.boxShadow = 'none';
+            }
+            
+            lastScroll = currentScroll;
+        });
+
+        // ==================== SMOOTH REVEAL ON LOAD ====================
+        window.addEventListener('load', function() {
+            document.body.style.opacity = '0';
+            setTimeout(() => {
+                document.body.style.transition = 'opacity 0.5s ease-in';
+                document.body.style.opacity = '1';
+            }, 100);
+        });
+
+        // ==================== THREE.JS 3D ANIMATION ====================
+        (function initThreeJS() {
+            const canvas = document.getElementById('threejs-canvas');
+            if (!canvas) return;
+
+            // Scene setup
+            const scene = new THREE.Scene();
+            const camera = new THREE.PerspectiveCamera(
+                75,
+                window.innerWidth / window.innerHeight,
+                0.1,
+                1000
+            );
+            const renderer = new THREE.WebGLRenderer({
+                canvas: canvas,
+                alpha: true,
+                antialias: true
+            });
+
+            renderer.setSize(window.innerWidth, window.innerHeight);
+            renderer.setPixelRatio(window.devicePixelRatio);
+            camera.position.z = 50;
+
+            // Create particles
+            const particleCount = 80;
+            const particles = [];
+            const geometry = new THREE.BufferGeometry();
+            const positions = new Float32Array(particleCount * 3);
+            const colors = new Float32Array(particleCount * 3);
+
+            const color1 = new THREE.Color(0xf9004d); // Pink/Red
+            const color2 = new THREE.Color(0xffffff); // White
+
+            for (let i = 0; i < particleCount; i++) {
+                const i3 = i * 3;
+                
+                // Position
+                positions[i3] = (Math.random() - 0.5) * 200;
+                positions[i3 + 1] = (Math.random() - 0.5) * 200;
+                positions[i3 + 2] = (Math.random() - 0.5) * 200;
+
+                // Color (mix between pink and white)
+                const colorMix = Math.random();
+                const mixedColor = color1.clone().lerp(color2, colorMix);
+                colors[i3] = mixedColor.r;
+                colors[i3 + 1] = mixedColor.g;
+                colors[i3 + 2] = mixedColor.b;
+
+                particles.push({
+                    x: positions[i3],
+                    y: positions[i3 + 1],
+                    z: positions[i3 + 2],
+                    vx: (Math.random() - 0.5) * 0.2,
+                    vy: (Math.random() - 0.5) * 0.2,
+                    vz: (Math.random() - 0.5) * 0.2
+                });
+            }
+
+            geometry.setAttribute('position', new THREE.BufferAttribute(positions, 3));
+            geometry.setAttribute('color', new THREE.BufferAttribute(colors, 3));
+
+            // Particle material
+            const particleMaterial = new THREE.PointsMaterial({
+                size: 2,
+                vertexColors: true,
+                transparent: true,
+                opacity: 0.8,
+                blending: THREE.AdditiveBlending
+            });
+
+            const particleSystem = new THREE.Points(geometry, particleMaterial);
+            scene.add(particleSystem);
+
+            // Create connecting lines
+            const lineGeometry = new THREE.BufferGeometry();
+            const lineMaterial = new THREE.LineBasicMaterial({
+                color: 0xf9004d,
+                transparent: true,
+                opacity: 0.2
+            });
+            const lines = new THREE.LineSegments(lineGeometry, lineMaterial);
+            scene.add(lines);
+
+            // Add floating geometric shapes
+            const shapes = [];
+            const shapeGeometry = new THREE.IcosahedronGeometry(2, 0);
+            const shapeMaterial = new THREE.MeshBasicMaterial({
+                color: 0xf9004d,
+                wireframe: true,
+                transparent: true,
+                opacity: 0.3
+            });
+
+            for (let i = 0; i < 8; i++) {
+                const shape = new THREE.Mesh(shapeGeometry, shapeMaterial.clone());
+                shape.position.set(
+                    (Math.random() - 0.5) * 150,
+                    (Math.random() - 0.5) * 150,
+                    (Math.random() - 0.5) * 150
+                );
+                shape.rotation.set(
+                    Math.random() * Math.PI,
+                    Math.random() * Math.PI,
+                    Math.random() * Math.PI
+                );
+                shape.scale.set(
+                    Math.random() * 0.5 + 0.5,
+                    Math.random() * 0.5 + 0.5,
+                    Math.random() * 0.5 + 0.5
+                );
+                shapes.push({
+                    mesh: shape,
+                    rotationSpeed: {
+                        x: (Math.random() - 0.5) * 0.01,
+                        y: (Math.random() - 0.5) * 0.01,
+                        z: (Math.random() - 0.5) * 0.01
+                    },
+                    floatSpeed: {
+                        x: (Math.random() - 0.5) * 0.02,
+                        y: (Math.random() - 0.5) * 0.02,
+                        z: (Math.random() - 0.5) * 0.02
+                    },
+                    initialPosition: {
+                        x: shape.position.x,
+                        y: shape.position.y,
+                        z: shape.position.z
+                    },
+                    floatAmount: Math.random() * 10 + 5
+                });
+                scene.add(shape);
+            }
+
+            // Mouse interaction
+            const mouse = new THREE.Vector2();
+            window.addEventListener('mousemove', (event) => {
+                mouse.x = (event.clientX / window.innerWidth) * 2 - 1;
+                mouse.y = -(event.clientY / window.innerHeight) * 2 + 1;
+            });
+
+            // Animation loop
+            let time = 0;
+            function animate() {
+                requestAnimationFrame(animate);
+                time += 0.01;
+
+                // Update particles
+                const positions = particleSystem.geometry.attributes.position.array;
+                for (let i = 0; i < particleCount; i++) {
+                    const i3 = i * 3;
+                    particles[i].x += particles[i].vx;
+                    particles[i].y += particles[i].vy;
+                    particles[i].z += particles[i].vz;
+
+                    // Boundary check
+                    if (Math.abs(particles[i].x) > 100) particles[i].vx *= -1;
+                    if (Math.abs(particles[i].y) > 100) particles[i].vy *= -1;
+                    if (Math.abs(particles[i].z) > 100) particles[i].vz *= -1;
+
+                    // Mouse interaction
+                    const mouseInfluence = 0.1;
+                    particles[i].x += (mouse.x * 50 - particles[i].x) * mouseInfluence * 0.01;
+                    particles[i].y += (mouse.y * 50 - particles[i].y) * mouseInfluence * 0.01;
+
+                    positions[i3] = particles[i].x;
+                    positions[i3 + 1] = particles[i].y;
+                    positions[i3 + 2] = particles[i].z;
+                }
+                particleSystem.geometry.attributes.position.needsUpdate = true;
+
+                // Update connecting lines
+                const maxDistance = 80;
+                const linePositions = [];
+                
+                for (let i = 0; i < particleCount; i++) {
+                    for (let j = i + 1; j < particleCount; j++) {
+                        const dx = particles[i].x - particles[j].x;
+                        const dy = particles[i].y - particles[j].y;
+                        const dz = particles[i].z - particles[j].z;
+                        const distance = Math.sqrt(dx * dx + dy * dy + dz * dz);
+
+                        if (distance < maxDistance) {
+                            const opacity = 1 - (distance / maxDistance);
+                            linePositions.push(
+                                particles[i].x, particles[i].y, particles[i].z,
+                                particles[j].x, particles[j].y, particles[j].z
+                            );
+                        }
+                    }
+                }
+
+                lineGeometry.setAttribute(
+                    'position',
+                    new THREE.Float32BufferAttribute(linePositions, 3)
+                );
+
+                // Update geometric shapes
+                shapes.forEach((shapeObj, index) => {
+                    const shape = shapeObj.mesh;
+                    shape.rotation.x += shapeObj.rotationSpeed.x;
+                    shape.rotation.y += shapeObj.rotationSpeed.y;
+                    shape.rotation.z += shapeObj.rotationSpeed.z;
+
+                    // Floating animation
+                    shape.position.x = shapeObj.initialPosition.x + Math.sin(time + index) * shapeObj.floatAmount;
+                    shape.position.y = shapeObj.initialPosition.y + Math.cos(time * 0.7 + index) * shapeObj.floatAmount;
+                    shape.position.z = shapeObj.initialPosition.z + Math.sin(time * 0.5 + index) * shapeObj.floatAmount;
+
+                    // Mouse interaction
+                    const mouseInfluence = 0.05;
+                    shape.position.x += (mouse.x * 30 - shape.position.x) * mouseInfluence;
+                    shape.position.y += (mouse.y * 30 - shape.position.y) * mouseInfluence;
+                });
+
+                // Rotate camera slightly
+                camera.position.x += Math.sin(time * 0.1) * 0.1;
+                camera.position.y += Math.cos(time * 0.1) * 0.1;
+                camera.lookAt(scene.position);
+
+                renderer.render(scene, camera);
+            }
+
+            // Handle window resize
+            function handleResize() {
+                camera.aspect = window.innerWidth / window.innerHeight;
+                camera.updateProjectionMatrix();
+                renderer.setSize(window.innerWidth, window.innerHeight);
+            }
+            window.addEventListener('resize', handleResize);
+
+            // Start animation
+            animate();
+        })();
     </script>
 
 </body>
