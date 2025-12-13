@@ -172,8 +172,9 @@ h4{
 }
 
 .about-image img{
-    width: 350px;
-    height: auto;
+    width: 100px;
+    height: 100px;
+    object-fit: cover;
     border-radius: 20px;
     display: block;
 }
@@ -647,8 +648,9 @@ footer p:nth-child(2){
     }
     
     .about-image img{
-        width: 300px;
-        height: auto;
+        width: 100px;
+        height: 100px;
+        object-fit: cover;
     }
     
     .about-text{
@@ -786,8 +788,9 @@ footer p:nth-child(2){
     }
     
     .about-image img{
-        width: 280px;
-        height: auto;
+        width: 100px;
+        height: 100px;
+        object-fit: cover;
     }
     
     .about-text{
@@ -1018,8 +1021,9 @@ footer p:nth-child(2){
     }
     
     .about-image img{
-        width: 250px;
-        height: auto;
+        width: 100px;
+        height: 100px;
+        object-fit: cover;
     }
     
     .about-text{
