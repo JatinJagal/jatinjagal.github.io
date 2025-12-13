@@ -151,18 +151,31 @@ h4{
 }
 
 .about-text{
-    max-width: 1130px;
-    width: 100%;
-    margin: 0 auto;
-    padding: 0 8%;
+    flex: 1;
     text-align: left;
 }
 
 .main{
+    max-width: 1130px;
     width: 100%;
-    margin: 0 auto;
+    margin: 0;
+    margin-left: 8%;
     display: flex;
-    justify-content: flex-start;
+    align-items: center;
+    gap: 60px;
+    padding: 0;
+}
+
+.about-image{
+    flex-shrink: 0;
+    position: relative;
+}
+
+.about-image img{
+    width: 350px;
+    height: auto;
+    border-radius: 20px;
+    display: block;
 }
 
 .about-text h2{
@@ -628,8 +641,18 @@ footer p:nth-child(2){
         left: 5%;
     }
     
-    .about-text{
+    .main{
+        gap: 40px;
         padding: 0 5%;
+    }
+    
+    .about-image img{
+        width: 300px;
+        height: auto;
+    }
+    
+    .about-text{
+        flex: 1;
     }
     
     .title h2{
@@ -750,21 +773,45 @@ footer p:nth-child(2){
         padding: 60px 0;
     }
     
-    .about-text{
+    .main{
+        flex-direction: column;
+        gap: 40px;
         padding: 0 5%;
+    }
+    
+    .about-image{
+        width: 100%;
+        display: flex;
+        justify-content: flex-start;
+    }
+    
+    .about-image img{
+        width: 280px;
+        height: auto;
+    }
+    
+    .about-text{
+        width: 100%;
     }
     
     .about-text h2{
         font-size: 50px;
+        text-align: left;
     }
     
     .about-text h5{
         font-size: 20px;
+        text-align: left;
     }
     
     .about-text p{
         font-size: 16px;
         line-height: 26px;
+        text-align: left;
+    }
+    
+    .about-text button{
+        display: inline-block;
     }
     
     /* Services Section */
@@ -958,24 +1005,50 @@ footer p:nth-child(2){
         padding: 50px 0;
     }
     
-    .about-text{
+    .main{
+        flex-direction: column;
+        gap: 30px;
         padding: 0 4%;
+    }
+    
+    .about-image{
+        width: 100%;
+        display: flex;
+        justify-content: flex-start;
+    }
+    
+    .about-image img{
+        width: 250px;
+        height: auto;
+    }
+    
+    .about-text{
+        width: 100%;
     }
     
     .about-text h2{
         font-size: 40px;
         margin-bottom: 15px;
+        text-align: left;
     }
     
     .about-text h5{
         font-size: 18px;
         margin-bottom: 20px;
+        text-align: left;
     }
     
     .about-text p{
         font-size: 15px;
         line-height: 24px;
         margin-bottom: 30px;
+        text-align: left;
+    }
+    
+    .about-text button{
+        display: inline-block;
+        padding: 10px 25px;
+        font-size: 14px;
     }
     
     button{
