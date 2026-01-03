@@ -1,0 +1,952 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="style.css" type="text/css" rel="stylesheet">
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" 
+    integrity="sha512-iecdLmaskl7CVkqkXNQ/ZH/XLlvWZOJyj7Yy7tcenmpD1ypASozpmT/E0iPtmFIB46ZmdtAc9eNBvH0H/ZpiBw=="
+     crossorigin="anonymous" referrerpolicy="no-referrer" />
+
+    <title>Jatin Jagal - Flutter Developer | Portfolio</title>
+    <style>
+        /* Contact Details Page Styles */
+        #contactDetailsPage nav{
+            background: #000000;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            z-index: 1000;
+            padding-top: 25px;
+            padding-bottom: 20px;
+        }
+
+        /* Hide navigation menu items everywhere */
+        nav ul{
+            display: none !important;
+        }
+
+        nav ul li{
+            display: none !important;
+        }
+
+        /* Ensure nav only shows logo and subscribe button */
+        nav{
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+
+        .contact-details-wrapper{
+            min-height: 100vh;
+            background: linear-gradient(135deg, #191919 0%, #101010 100%);
+        }
+
+        .contact-details-page{
+            min-height: calc(100vh - 100px);
+            background: transparent;
+            padding: 40px 20px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding-top: 100px;
+        }
+
+        .contact-details-container{
+            max-width: 900px;
+            width: 100%;
+            margin: 0 auto;
+        }
+
+        .back-button{
+            background: transparent;
+            border: 2px solid #f9004d;
+            color: #f9004d;
+            padding: 10px 20px;
+            border-radius: 30px;
+            font-size: 16px;
+            font-weight: 500;
+            cursor: pointer;
+            transition: all 0.4s;
+            margin-bottom: 30px;
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            font-family: 'Poppins', sans-serif;
+        }
+
+        .back-button:hover{
+            background: #f9004d;
+            color: white;
+            transform: translateX(-5px);
+        }
+
+        .back-button i{
+            font-size: 18px;
+        }
+
+        .contact-details-header{
+            text-align: center;
+            margin-bottom: 50px;
+        }
+
+        .contact-details-header h1{
+            color: white;
+            font-size: 50px;
+            margin-bottom: 15px;
+            font-weight: 700;
+        }
+
+        .contact-details-header h1 span{
+            color: #f9004d;
+        }
+
+        .contact-details-header p{
+            color: #f5f5f5;
+            font-size: 18px;
+        }
+
+        .contact-details-content{
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 30px;
+            margin-bottom: 50px;
+        }
+
+        .contact-card{
+            background: #191919;
+            border-radius: 20px;
+            padding: 30px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            text-align: center;
+            transition: transform 0.4s, box-shadow 0.4s;
+            border: 2px solid transparent;
+        }
+
+        .contact-card:hover{
+            transform: translateY(-10px);
+            box-shadow: 0 10px 30px rgba(249, 0, 77, 0.3);
+            border-color: #f9004d;
+        }
+
+        .contact-icon{
+            width: 70px;
+            height: 70px;
+            background: #f9004d;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 20px;
+            font-size: 30px;
+            color: white;
+        }
+
+        .contact-info h3{
+            color: white;
+            font-size: 20px;
+            margin-bottom: 15px;
+            font-weight: 600;
+        }
+
+        .contact-info a{
+            color: #f5f5f5;
+            text-decoration: none;
+            font-size: 16px;
+            transition: color 0.3s;
+            word-break: break-word;
+        }
+
+        .contact-info a:hover{
+            color: #f9004d;
+        }
+
+        .contact-info p{
+            color: #f5f5f5;
+            font-size: 16px;
+            line-height: 1.6;
+            margin: 0;
+        }
+
+        .contact-social-links{
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+            margin-top: 40px;
+        }
+
+        .contact-social-links .social-link{
+            width: 50px;
+            height: 50px;
+            background: #191919;
+            border: 2px solid #f9004d;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #f9004d;
+            font-size: 22px;
+            transition: all 0.3s;
+            text-decoration: none;
+        }
+
+        .contact-social-links .social-link:hover{
+            background: #f9004d;
+            color: white;
+            transform: scale(1.1);
+        }
+
+        /* Toast Notification Styles */
+        .toast-container{
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            z-index: 99999;
+            animation: slideInRight 0.3s ease;
+        }
+
+        @keyframes slideInRight {
+            from {
+                transform: translateX(400px);
+                opacity: 0;
+            }
+            to {
+                transform: translateX(0);
+                opacity: 1;
+            }
+        }
+
+        .toast{
+            background: #191919;
+            border: 2px solid #f9004d;
+            border-radius: 10px;
+            padding: 15px 20px;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.5);
+            min-width: 300px;
+            animation: fadeIn 0.3s ease;
+        }
+
+        .toast i.fa-check-circle{
+            color: #4ade80;
+            font-size: 22px;
+        }
+
+        .toast span{
+            color: white;
+            font-size: 16px;
+            font-weight: 500;
+            flex: 1;
+        }
+
+        .toast-close{
+            background: transparent;
+            border: none;
+            color: #f5f5f5;
+            cursor: pointer;
+            font-size: 16px;
+            padding: 5px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: color 0.3s;
+        }
+
+        .toast-close:hover{
+            color: #f9004d;
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .contact-details-content{
+                grid-template-columns: 1fr;
+                gap: 20px;
+            }
+            .contact-details-header h1{
+                font-size: 40px;
+            }
+            .toast-container{
+                top: 15px;
+                right: 15px;
+                left: 15px;
+            }
+            .toast{
+                min-width: auto;
+                width: 100%;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .contact-details-header h1{
+                font-size: 32px;
+            }
+            .contact-card{
+                padding: 20px;
+            }
+            .toast span{
+                font-size: 14px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Main Portfolio Page -->
+    <div id="mainPage">
+
+    <!-- Hero section start-->
+
+    <div class="hero" id="home">
+        <nav>
+            <h2 class="logo">Portfo<span>lio</span></h2>
+            <a href="#" class="btn" id="subscribeBtn">Subscribe</a>
+        </nav>
+
+        <div class="content">
+            <h4>Hello, my name is</h4>
+            <h1>Jatin <span>Jagal</span></h1>
+            <h3>I'am a Flutter Developer.</h3>
+            <div class="newslatter">
+                <form id="contactForm">
+                    <input type="text" name="message" id="mail" placeholder="Enter Your Message">
+                    <input type="submit" name="submit" value="Let's Talk">
+                </form>
+                <p id="errorMessage" style="color: #f9004d; margin-top: 10px; font-size: 14px; display: none;"></p>
+            </div>
+            <script>
+                document.getElementById('contactForm').addEventListener('submit', function(e) {
+                    e.preventDefault();
+                    const message = document.getElementById('mail').value.trim();
+                    const errorMsg = document.getElementById('errorMessage');
+                    
+                    if (!message) {
+                        errorMsg.textContent = 'Please write a message';
+                        errorMsg.style.display = 'block';
+                        return;
+                    }
+                    
+                    errorMsg.style.display = 'none';
+                    const email = 'jatinjagal912@gmail.com';
+                    const subject = encodeURIComponent('Contact from Portfolio');
+                    const body = encodeURIComponent(message);
+                    window.location.href = 'mailto:' + email + '?subject=' + subject + '&body=' + body;
+                    document.getElementById('mail').value = '';
+                });
+            </script>
+        </div>
+
+    </div>
+
+    <!------About Section---------->
+
+    <section class="about" id="about">
+        <div class="main">
+            <div class="about-image">
+                <img src="images/profile_photo.png" alt="Jatin Jagal - Flutter Developer" style="width: 300px; height: 460px; object-fit: cover;">
+            </div>
+            <div class="about-text">
+                <h2>About Me</h2>
+                <h5>Flutter <span>Developer</span></h5>
+                <p>I am a Flutter Developer specializing in building cross-platform mobile applications with clean code and pixel-perfect designs. I create interactive and engaging Android applications with smooth animations and excellent user experience. My expertise includes developing dating apps, medical applications, and media sharing platforms. I focus on creating responsive and accessible applications that work seamlessly across all devices, ensuring optimal performance and user satisfaction.
+                </p>
+                <button type="button" onclick="navigateToContactDetails()">Let's Talk</button>
+            </div>
+        </div>
+    </section>
+
+    <!----Services Section-------------->
+
+    <div class="service" id="services">
+        <div class="title">
+            <h2>Our Services</h2>
+        </div>
+
+        <div class="box">
+            <div class="card">
+                <i class="fas fa-bars"></i>
+                <h5>Android Development</h5>
+                <div class="pra">
+                    <p>Every applications should be built with two primary goals: Firstly, it needs to
+                        work across all devices. Secondly , it needs to be fasts as possible.
+                    </p>
+                    
+                    <p style="text-align: center;">
+                        <a class="button read-more-btn" href="#" data-service="android">Read More</a>
+                    </p>
+                </div>
+            </div>
+
+
+
+            <div class="card">
+                <i class="far fa-user"></i>
+                <h5>Cross-Platform Development</h5>
+                <div class="pra">
+                    <p>Every applications should be built with two primary goals: Firstly, it needs to
+                        work across all devices. Secondly , it needs to be fasts as possible.
+                    </p>
+                    
+                    <p style="text-align: center;">
+                        <a class="button read-more-btn" href="#" data-service="cross-platform">Read More</a>
+                    </p>
+                </div>
+            </div>
+
+
+            <div class="card">
+                <i class="far fa-bell"></i>
+                <h5>UI/UX Design</h5>
+                <div class="pra">
+                    <p>Every applications should be built with two primary goals: Firstly, it needs to
+                        work across all devices. Secondly , it needs to be fasts as possible.
+                    </p>
+                    
+                    <p style="text-align: center;">
+                        <a class="button read-more-btn" href="#" data-service="uiux">Read More</a>
+                    </p>
+                </div>
+            </div>
+
+
+        </div>
+    </div>
+
+    <!----Projects Section-------------->
+
+    <div class="projects" id="projects">
+        <div class="title">
+            <h2>My Projects</h2>
+        </div>
+
+        <div class="projects-container">
+            <div class="project-card">
+                <div class="project-image">
+                    <img src="images/projects/letsmeet.jpg" alt="Let's Meet App" onerror="this.src='images/letsmeet-pro.png'">
+                </div>
+                <div class="project-content">
+                    <h5>Let's Meet</h5>
+                    <p class="project-category">Dating App</p>
+                    <p class="project-description">
+                        A feature-rich dating application that helps users find their perfect match. 
+                        Built with Flutter, featuring real-time chat, image sharing, and date scheduling capabilities. 
+                        Currently has 5K+ downloads on Google Play Store.
+                    </p>
+                    <div class="project-stats">
+                        <span><i class="fas fa-download"></i> 5K+ Downloads</span>
+                        <span><i class="fas fa-star"></i> Mature 17+</span>
+                    </div>
+                    <p style="text-align: center; margin-top: 20px;">
+                        <a class="button" href="https://play.google.com/store/apps/details?id=com.innoventixsolutions.letsmeet" target="_blank">
+                            <i class="fab fa-google-play"></i> View on Play Store
+                        </a>
+                    </p>
+                </div>
+            </div>
+
+            <div class="project-card">
+                <div class="project-image">
+                    <img src="images/projects/imp.jpg" alt="IMP Medical App" onerror="this.src='images/imp-pro.png'">
+                </div>
+                <div class="project-content">
+                    <h5>IMP - Medical Products</h5>
+                    <p class="project-category">Medical App</p>
+                    <p class="project-description">
+                        A healthcare application designed for users to report issues with medical products or devices. 
+                        Features user registration, complaint submission, and direct reporting to hospital administration 
+                        for quick review and action.
+                    </p>
+                    <div class="project-stats">
+                        <span><i class="fas fa-download"></i> 50+ Downloads</span>
+                        <span><i class="fas fa-heart"></i> Healthcare</span>
+                    </div>
+                    <p style="text-align: center; margin-top: 20px;">
+                        <a class="button" href="https://play.google.com/store/apps/details?id=com.app.impmedical" target="_blank">
+                            <i class="fab fa-google-play"></i> View on Play Store
+                        </a>
+                    </p>
+                </div>
+            </div>
+
+            <div class="project-card">
+                <div class="project-image">
+                    <img src="images/projects/weshare.jpg" alt="WeShare App" onerror="this.src='images/weshare-pro.png'">
+                </div>
+                <div class="project-content">
+                    <h5>WeShare</h5>
+                    <p class="project-category">Media Sharing App</p>
+                    <p class="project-description">
+                        A comprehensive photo and video storage solution with cloud backup. Features include 
+                        cross-device access, smart search by tags/objects/places, album sharing, and memory reliving. 
+                        Helps users free up device storage while keeping memories accessible.
+                    </p>
+                    <div class="project-stats">
+                        <span><i class="fas fa-download"></i> 1K+ Downloads</span>
+                        <span><i class="fas fa-cloud"></i> Cloud Storage</span>
+                    </div>
+                    <p style="text-align: center; margin-top: 20px;">
+                        <a class="button" href="https://play.google.com/store/apps/details?id=com.app.weshare" target="_blank">
+                            <i class="fab fa-google-play"></i> View on Play Store
+                        </a>
+                    </p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!----Experience Section-------------->
+
+    <section class="experience" id="skills">
+        <div class="title">
+            <h2>Experience</h2>
+        </div>
+        <div class="experience-content">
+            <div class="experience-item">
+                <div class="experience-icon">
+                    <i class="fas fa-code"></i>
+                </div>
+                <div class="experience-text">
+                    <h3>Flutter Developer</h3>
+                    <h4>Innoventix Solutions</h4>
+                    <p class="experience-date">November 2023 - November 2025</p>
+                    <p>Developing cross-platform mobile applications using Flutter framework. Specialized in creating 
+                    dating apps, social media platforms, and healthcare solutions with focus on user experience, 
+                    performance optimization, and modern UI/UX design patterns. While working in this organization, I created the Let's Meet app, WeShare app, and IMP Medical app. I can deploy apps to both Google Play Store and Apple App Store.</p>
+                    <p class="experience-skills">
+                        <span>Flutter</span>
+                        <span>Dart</span>
+                        <span>Firebase</span>
+                        <span>REST APIs</span>
+                        <span>State Management</span>
+                        <span>Play Store Deployment</span>
+                        <span>App Store Deployment</span>
+                    </p>
+                </div>
+            </div>
+            <div class="experience-item">
+                <div class="experience-icon">
+                    <i class="fas fa-mobile-alt"></i>
+                </div>
+                <div class="experience-text">
+                    <h3>Mobile App Developer</h3>
+                    <h4>Published Apps on Google Play Store</h4>
+                    <p>Successfully developed and published multiple applications on Google Play Store with thousands 
+                    of downloads. Expertise in app architecture, cloud integration, real-time features, and ensuring 
+                    smooth performance across different Android devices.</p>
+                    <p class="experience-skills">
+                        <span>Android Development</span>
+                        <span>Google Play Console</span>
+                        <span>App Deployment</span>
+                        <span>UI/UX Design</span>
+                        <span>API Integration</span>
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!--------Contact Me section------------>
+
+    <div class="contact-me" id="contact">
+        <p>Let me get you a beautiful application.</p>
+        <a class="button-two" href="#" onclick="event.preventDefault(); navigateToContactDetails();">Hire Me</a>
+    </div>
+
+
+    <!--------Footer section---------------->
+
+    <footer>
+        <p>Jatin Jagal</p>
+        <p>For more html, css, and coding tutorial -please click on the link below to subscribe my channel:</p>
+        <div class="social">
+            <a href="https://www.instagram.com/jatin_jagal/" target="_blank" rel="noopener noreferrer"><i class="fab fa-instagram-square"></i></a>
+            <a href="https://www.linkedin.com/in/jatin-jagal/" target="_blank" rel="noopener noreferrer"><i class="fab fa-linkedin"></i></a>
+            <a href="https://www.facebook.com/profile.php?id=61556752981174" target="_blank" rel="noopener noreferrer"><i class="fab fa-facebook-square"></i></a>
+        </div>
+        <p class="address">
+            <i class="fas fa-map-marker-alt"></i>  Ahmedabad, Gujarat, India
+        </p>
+        <p class="end">CopyRight &copy By Jagal Jatin</p>
+        
+    </footer>
+    </div>
+
+    <!-- Contact Details Page -->
+    <div id="contactDetailsPage" style="display: none;">
+        <nav>
+            <h2 class="logo">Portfo<span>lio</span></h2>
+            <a href="#" class="btn" id="subscribeBtn2" onclick="event.preventDefault(); showToast();">Subscribe</a>
+        </nav>
+
+        <div class="contact-details-wrapper">
+            <div class="contact-details-page">
+                <div class="contact-details-container">
+                    <button class="back-button" onclick="navigateToHome()">
+                        <i class="fas fa-arrow-left"></i> Back to Home
+                    </button>
+                    
+                    <div class="contact-details-header">
+                        <h1>Contact <span>Details</span></h1>
+                        <p>Get in touch with me</p>
+                    </div>
+
+                    <div class="contact-details-content">
+                        <div class="contact-card">
+                            <div class="contact-icon">
+                                <i class="fas fa-phone"></i>
+                            </div>
+                            <div class="contact-info">
+                                <h3>Phone Number</h3>
+                                <a href="tel:+919106677446">+91 9106677446</a>
+                            </div>
+                        </div>
+
+                        <div class="contact-card">
+                            <div class="contact-icon">
+                                <i class="fas fa-envelope"></i>
+                            </div>
+                            <div class="contact-info">
+                                <h3>Email Address</h3>
+                                <a href="mailto:jatinjagal912@gmail.com">jatinjagal912@gmail.com</a>
+                            </div>
+                        </div>
+
+                        <div class="contact-card">
+                            <div class="contact-icon">
+                                <i class="fas fa-map-marker-alt"></i>
+                            </div>
+                            <div class="contact-info">
+                                <h3>Home Address</h3>
+                                <p> Ahmedabad, Gujarat, India</p>
+                            </div>
+                        </div>
+
+                        <div class="contact-card">
+                            <div class="contact-icon">
+                                <i class="fab fa-linkedin"></i>
+                            </div>
+                            <div class="contact-info">
+                                <h3>LinkedIn</h3>
+                                <a href="https://www.linkedin.com/in/jatin-jagal/" target="_blank" rel="noopener noreferrer">
+                                    Connect on LinkedIn
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="contact-social-links">
+                        <a href="https://www.instagram.com/jatin_jagal/" target="_blank" rel="noopener noreferrer" class="social-link">
+                            <i class="fab fa-instagram"></i>
+                        </a>
+                        <a href="https://www.linkedin.com/in/jatin-jagal/" target="_blank" rel="noopener noreferrer" class="social-link">
+                            <i class="fab fa-linkedin"></i>
+                        </a>
+                        <a href="https://www.facebook.com/profile.php?id=61556752981174" target="_blank" rel="noopener noreferrer" class="social-link">
+                            <i class="fab fa-facebook"></i>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Toast Notification -->
+    <div id="toast" class="toast-container" style="display: none;">
+        <div class="toast">
+            <i class="fas fa-check-circle"></i>
+            <span>Subscribed successfully!</span>
+            <button class="toast-close" onclick="hideToast()">
+                <i class="fas fa-times"></i>
+            </button>
+        </div>
+    </div>
+
+    <!-- Modal Dialog Box -->
+    <div id="serviceModal" class="modal-overlay" style="display: none;">
+        <div class="modal-content">
+            <button class="modal-close" onclick="closeModal()" aria-label="Close modal">
+                <i class="fas fa-times"></i>
+            </button>
+            <div class="modal-header">
+                <i id="modalIcon" class=""></i>
+                <h3 id="modalTitle"></h3>
+            </div>
+            <div class="modal-body">
+                <p id="modalDescription"></p>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Service data
+        const servicesData = {
+            'android': {
+                icon: 'fas fa-bars',
+                title: 'Android Development',
+                description: 'I specialize in developing high-performance Android applications using Flutter and native Android technologies. My services include creating responsive and intuitive mobile apps that work seamlessly across different Android devices. I focus on optimizing app performance, ensuring smooth animations, implementing best practices for code structure, and delivering pixel-perfect UI/UX designs. Whether you need a simple utility app or a complex enterprise solution, I can help bring your vision to life with clean, maintainable code and excellent user experience.'
+            },
+            'cross-platform': {
+                icon: 'far fa-user',
+                title: 'Cross-Platform Development',
+                description: 'As a Flutter developer, I excel in cross-platform mobile app development, allowing you to reach both Android and iOS users with a single codebase. This approach saves time and resources while maintaining native performance. My cross-platform development services include building apps that provide consistent user experience across all platforms, leveraging Flutter\'s powerful framework for rapid development, implementing platform-specific features when needed, and ensuring your app looks and feels native on both Android and iOS devices. This is the most cost-effective way to launch your mobile application.'
+            },
+            'uiux': {
+                icon: 'far fa-bell',
+                title: 'UI/UX Design',
+                description: 'I create beautiful and intuitive user interfaces that not only look great but also provide exceptional user experience. My UI/UX design services include designing user-friendly interfaces that are easy to navigate, creating visually appealing designs that match your brand identity, ensuring consistency across all screens and interactions, implementing modern design trends while maintaining usability, conducting user testing to optimize the experience, and creating responsive designs that adapt to different screen sizes. A well-designed app not only attracts users but also keeps them engaged and coming back for more.'
+            }
+        };
+
+        // Open modal function
+        function openModal(serviceKey) {
+            const service = servicesData[serviceKey];
+            if (!service) return;
+
+            const modal = document.getElementById('serviceModal');
+            const modalIcon = document.getElementById('modalIcon');
+            const modalTitle = document.getElementById('modalTitle');
+            const modalDescription = document.getElementById('modalDescription');
+
+            modalIcon.className = service.icon;
+            modalTitle.textContent = service.title;
+            modalDescription.textContent = service.description;
+
+            modal.style.display = 'flex';
+            document.body.style.overflow = 'hidden';
+        }
+
+        // Close modal function
+        function closeModal() {
+            const modal = document.getElementById('serviceModal');
+            modal.style.display = 'none';
+            document.body.style.overflow = 'auto';
+        }
+
+        // Close modal when clicking on overlay
+        document.addEventListener('DOMContentLoaded', function() {
+            const modal = document.getElementById('serviceModal');
+            const modalContent = modal.querySelector('.modal-content');
+            
+            modal.addEventListener('click', function(e) {
+                if (e.target === modal) {
+                    closeModal();
+                }
+            });
+
+            // Prevent modal content clicks from closing
+            modalContent.addEventListener('click', function(e) {
+                e.stopPropagation();
+            });
+
+            // Add click handlers to all Read More buttons
+            const readMoreButtons = document.querySelectorAll('.read-more-btn');
+            readMoreButtons.forEach(button => {
+                button.addEventListener('click', function(e) {
+                    e.preventDefault();
+                    const serviceKey = this.getAttribute('data-service');
+                    openModal(serviceKey);
+                });
+            });
+
+            // Close modal on Escape key
+            document.addEventListener('keydown', function(e) {
+                if (e.key === 'Escape' && modal.style.display === 'flex') {
+                    closeModal();
+                }
+            });
+
+            // Subscribe button click handler
+            const subscribeBtn = document.getElementById('subscribeBtn');
+            if (subscribeBtn) {
+                subscribeBtn.addEventListener('click', function(e) {
+                    e.preventDefault();
+                    showToast();
+                });
+            }
+
+            // Subscribe button 2 click handler (on contact details page)
+            const subscribeBtn2 = document.getElementById('subscribeBtn2');
+            if (subscribeBtn2) {
+                subscribeBtn2.addEventListener('click', function(e) {
+                    e.preventDefault();
+                    showToast();
+                });
+            }
+        });
+
+        // Navigation functions
+        function navigateToContactDetails() {
+            document.getElementById('mainPage').style.display = 'none';
+            document.getElementById('contactDetailsPage').style.display = 'block';
+            window.location.hash = 'contact-details';
+            window.scrollTo(0, 0);
+        }
+
+        function navigateToHome() {
+            document.getElementById('contactDetailsPage').style.display = 'none';
+            document.getElementById('mainPage').style.display = 'block';
+            window.location.hash = '';
+            window.scrollTo(0, 0);
+        }
+
+        // Toast notification functions
+        function showToast() {
+            const toast = document.getElementById('toast');
+            toast.style.display = 'block';
+            
+            // Auto hide after 3 seconds
+            setTimeout(function() {
+                hideToast();
+            }, 3000);
+        }
+
+        function hideToast() {
+            const toast = document.getElementById('toast');
+            toast.style.display = 'none';
+        }
+
+        // Handle hash navigation on page load
+        window.addEventListener('DOMContentLoaded', function() {
+            if (window.location.hash === '#contact-details') {
+                navigateToContactDetails();
+            } else {
+                navigateToHome();
+            }
+        });
+
+        // Handle browser back/forward buttons
+        window.addEventListener('hashchange', function() {
+            if (window.location.hash === '#contact-details') {
+                navigateToContactDetails();
+            } else {
+                navigateToHome();
+            }
+        });
+
+        // ==================== SCROLL-TRIGGERED ANIMATIONS ====================
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -50px 0px'
+        };
+
+        const observer = new IntersectionObserver(function(entries) {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('animated');
+                    // Add specific animation classes based on data attribute
+                    const animationType = entry.target.getAttribute('data-animation') || 'fade-in-up';
+                    entry.target.classList.add(animationType);
+                    observer.unobserve(entry.target);
+                }
+            });
+        }, observerOptions);
+
+        // Observe all sections for scroll animations
+        document.addEventListener('DOMContentLoaded', function() {
+            // Add animate-on-scroll class to elements
+            const animateElements = document.querySelectorAll('.about, .service, .projects, .experience, .contact-me, .card, .project-card, .experience-item, .title, .about-text, .contact-card');
+            
+            animateElements.forEach((el, index) => {
+                el.classList.add('animate-on-scroll');
+                el.setAttribute('data-animation', 'fade-in-up');
+                observer.observe(el);
+            });
+
+            // Stagger animation for cards
+            const cards = document.querySelectorAll('.card');
+            cards.forEach((card, index) => {
+                card.style.animationDelay = `${index * 0.1}s`;
+                card.setAttribute('data-animation', 'scale-in');
+            });
+
+            // Stagger animation for project cards
+            const projectCards = document.querySelectorAll('.project-card');
+            projectCards.forEach((card, index) => {
+                card.style.animationDelay = `${index * 0.15}s`;
+            });
+
+            // Stagger animation for experience items
+            const experienceItems = document.querySelectorAll('.experience-item');
+            experienceItems.forEach((item, index) => {
+                item.style.animationDelay = `${index * 0.2}s`;
+            });
+        });
+
+        // ==================== TYPING ANIMATION FOR HERO TEXT ====================
+        function typeWriter(element, text, speed = 100) {
+            let i = 0;
+            element.textContent = '';
+            element.style.borderRight = '2px solid #f9004d';
+            
+            function type() {
+                if (i < text.length) {
+                    element.textContent += text.charAt(i);
+                    i++;
+                    setTimeout(type, speed);
+                } else {
+                    // Blinking cursor effect
+                    setInterval(() => {
+                        element.style.borderRight = element.style.borderRight === '2px solid transparent' ? '2px solid #f9004d' : '2px solid transparent';
+                    }, 500);
+                }
+            }
+            
+            type();
+        }
+
+        // Apply typing animation to hero h3 text
+        document.addEventListener('DOMContentLoaded', function() {
+            const heroText = document.querySelector('.content h3');
+            if (heroText && !sessionStorage.getItem('typingAnimationPlayed')) {
+                const originalText = heroText.textContent;
+                typeWriter(heroText, originalText, 80);
+                sessionStorage.setItem('typingAnimationPlayed', 'true');
+            }
+        });
+
+        // ==================== PARALLAX EFFECT FOR HERO ====================
+        window.addEventListener('scroll', function() {
+            const scrolled = window.pageYOffset;
+            const hero = document.querySelector('.hero');
+            if (hero) {
+                hero.style.transform = `translateY(${scrolled * 0.5}px)`;
+            }
+        });
+
+        // ==================== NAVBAR SCROLL EFFECT ====================
+        let lastScroll = 0;
+        const navbar = document.querySelector('nav');
+        
+        window.addEventListener('scroll', function() {
+            const currentScroll = window.pageYOffset;
+            
+            if (currentScroll > 100) {
+                navbar.style.background = 'rgba(0, 0, 0, 0.95)';
+                navbar.style.backdropFilter = 'blur(10px)';
+                navbar.style.boxShadow = '0 2px 20px rgba(0, 0, 0, 0.3)';
+            } else {
+                navbar.style.background = 'transparent';
+                navbar.style.backdropFilter = 'none';
+                navbar.style.boxShadow = 'none';
+            }
+            
+            lastScroll = currentScroll;
+        });
+
+        // ==================== SMOOTH REVEAL ON LOAD ====================
+        window.addEventListener('load', function() {
+            document.body.style.opacity = '0';
+            setTimeout(() => {
+                document.body.style.transition = 'opacity 0.5s ease-in';
+                document.body.style.opacity = '1';
+            }, 100);
+        });
+    </script>
+
+</body>
+</html>

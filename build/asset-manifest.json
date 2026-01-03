@@ -1,0 +1,14 @@
+{
+  "files": {
+    "main.css": "/JatinJagal/jatinjagal.github.io.git/static/css/main.157075a6.css",
+    "main.js": "/JatinJagal/jatinjagal.github.io.git/static/js/main.0f4219ac.js",
+    "static/media/back-ground-project.jpg": "/JatinJagal/jatinjagal.github.io.git/static/media/back-ground-project.82105400779f16a40e84.jpg",
+    "index.html": "/JatinJagal/jatinjagal.github.io.git/index.html",
+    "main.157075a6.css.map": "/JatinJagal/jatinjagal.github.io.git/static/css/main.157075a6.css.map",
+    "main.0f4219ac.js.map": "/JatinJagal/jatinjagal.github.io.git/static/js/main.0f4219ac.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.157075a6.css",
+    "static/js/main.0f4219ac.js"
+  ]
+}
