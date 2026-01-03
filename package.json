@@ -3,7 +3,7 @@
   "version": "1.0.0",
   "description": "Jatin Jagal's Portfolio - Flutter Developer",
   "private": true,
-  "homepage": "https://github.com/JatinJagal/jatinjagal.github.io.git",
+  "homepage": "https://jatinjagal.github.io/",
   "dependencies": {
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
