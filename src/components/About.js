@@ -11,6 +11,13 @@ const About = () => {
   return (
     <section className="about" id="about">
       <div className="main">
+        <div className="about-image">
+          <img
+            src={`${process.env.PUBLIC_URL}/images/profile-img.jpeg`}
+            className="about-photo"
+            alt="Jatin Jagal - Flutter Developer"
+          />
+        </div>
         <div className="about-text">
           <h2>About Me</h2>
           <h5>Flutter <span>Developer</span></h5>
